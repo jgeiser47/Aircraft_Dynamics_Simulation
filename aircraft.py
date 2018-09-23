@@ -8,11 +8,11 @@
 import numpy as np
 
 class Aircraft():
-	def __init__(self, initial_state, initial_forces):
+	def __init__(self):
 
 		self.Design = "B747"
-		self.state = initial_state
-		self.forces = initial_forces
+		self.state = state()
+		self.forces = forces()
 
 	mass = 1500;
 	mass_matrix = np.identity(3) * mass

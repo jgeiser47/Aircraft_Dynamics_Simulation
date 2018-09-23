@@ -7,7 +7,7 @@
 
 import numpy as np
 
-import aircraft
+from aircraft import Aircraft
 import sim_math
 import log_data
 
@@ -44,10 +44,8 @@ def Run_Sim(SIM, plane1):
 	# Log output
 
 
-initial_state = aircraft.state()
-initial_forces = aircraft.forces()
-plane1 = aircraft.Aircraft(initial_state, initial_forces)
-
+plane1 = Aircraft()
+plane1.forces.net_force = np.array([500, 3000, 0])
 
 
 SIM = Sim_Parameters()
