@@ -21,6 +21,9 @@ class Sim_Parameters():
 
 def Run_Sim(SIM, plane1):
 	TIME = SIM.START_TIME
+	plane1.Calc_Forces()
+	plane1.state.acc_ned = (np.linalg.inv(plane1.mass_matrix)).dot(plane1.forces.net_force)
+
 	log_data.Log_Setup()
 	log_data.Log_Output(TIME, plane1)
 	while (TIME <= SIM.END_TIME):

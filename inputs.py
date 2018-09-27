@@ -9,8 +9,6 @@ import numpy as np
 
 from aircraft import Aircraft
 import sim_setup
-import sim_math
-import log_data
 
 
 SIM = sim_setup.Sim_Parameters()
