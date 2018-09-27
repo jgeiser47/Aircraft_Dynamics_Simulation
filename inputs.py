@@ -20,8 +20,8 @@ SIM.DELTA_T = 0.1
 
 plane1 = Aircraft()
 
-plane1.state.pos_ned = np.array([0, 0, 0])
-plane1.state.vel_ned = np.array([0, 300, 0])
+plane1.state.pos_ENU = np.array([0, 0, 0])
+plane1.state.vel_ENU = np.array([0, 300, 0])
 	
 
 sim_setup.Run_Sim(SIM, plane1)

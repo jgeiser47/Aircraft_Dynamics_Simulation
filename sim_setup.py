@@ -22,7 +22,7 @@ class Sim_Parameters():
 def Run_Sim(SIM, plane1):
 	TIME = SIM.START_TIME
 	plane1.Calc_Forces()
-	plane1.state.acc_ned = (np.linalg.inv(plane1.mass_matrix)).dot(plane1.forces.net_force)
+	plane1.state.acc_ENU = (np.linalg.inv(plane1.mass_matrix)).dot(plane1.forces.net_force)
 
 	log_data.Log_Setup()
 	log_data.Log_Output(TIME, plane1)
@@ -32,13 +32,13 @@ def Run_Sim(SIM, plane1):
 		plane1.Calc_Forces()
 
 		# Given forces, update accelerations
-		plane1.state.acc_ned = (np.linalg.inv(plane1.mass_matrix)).dot(plane1.forces.net_force)
+		plane1.state.acc_ENU = (np.linalg.inv(plane1.mass_matrix)).dot(plane1.forces.net_force)
 
 		# Given accelerations, update velocities
-		plane1.state.vel_ned = sim_math.Integrate_Linear(SIM.DELTA_T, plane1.state.acc_ned, plane1.state.vel_ned)	
+		plane1.state.vel_ENU = sim_math.Integrate_Linear(SIM.DELTA_T, plane1.state.acc_ENU, plane1.state.vel_ENU)	
 
 		# Given veolocities, update positions
-		plane1.state.pos_ned = sim_math.Integrate_Linear(SIM.DELTA_T, plane1.state.vel_ned, plane1.state.pos_ned)	
+		plane1.state.pos_ENU = sim_math.Integrate_Linear(SIM.DELTA_T, plane1.state.vel_ENU, plane1.state.pos_ENU)	
 	
 		# Log output
 		log_data.Log_Output(TIME, plane1)
