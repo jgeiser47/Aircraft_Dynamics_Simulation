@@ -45,7 +45,7 @@ class Aircraft():
 class state():
 	def __init__(self):
 		self.pos_ned = np.array([0, 0, 0])
-		self.vel_ned = np.array([0, 300, 0])
+		self.vel_ned = np.array([0, 0, 0])
 		self.acc_ned = np.array([0, 0, 0])
 		self.ang_pos_body = np.array([0, 0, 0])
 		self.ang_vel_body = np.array([0, 0, 0])
@@ -53,8 +53,8 @@ class state():
 
 class forces():
 	def __init__(self): 
-		self.lift_ned = np.array([0, 0, -1300])
-		self.drag_ned = np.array([0, -12000, 0])
-		self.thrust_ned = np.array([0, 60000, 0])
-		self.weight_ned = np.array([0, 0, 1300])
-		self.net_force = np.array([0, 1000, 0])
+		self.lift_ned = np.array([0, 0, 0])
+		self.drag_ned = np.array([0, 0, 0])
+		self.thrust_ned = np.array([0, 0, 0])
+		self.weight_ned = np.array([0, 0, 0])
+		self.net_force = np.array([0, 0, 0])
