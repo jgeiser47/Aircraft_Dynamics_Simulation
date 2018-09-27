@@ -12,9 +12,16 @@ import sim_setup
 import sim_math
 import log_data
 
+
+SIM = sim_setup.Sim_Parameters()
+
+SIM.START_TIME = 0.0
+SIM.END_TIME = 200.0
+SIM.DELTA_T = 0.25
+
+
 plane1 = Aircraft()
 plane1.forces.net_force = np.array([500, 3000, 0])
 
 
-SIM = sim_setup.Sim_Parameters()
 sim_setup.Run_Sim(SIM, plane1)
