@@ -8,11 +8,12 @@
 import os
 	
 def Log_Setup():
-	if os.path.exists("post_processing/output.csv"):
-		os.remove("post_processing/output.csv")
-		print("File output.csv deleted")
+	Filepath = "post_processing/output.csv"	
+	if os.path.exists(Filepath):
+		os.remove(Filepath)
+		print("(Note: old post_processing/output.csv deleted)\n")
 
-	fo = open("post_processing/output.csv", "w")
+	fo = open(Filepath, "w")
 	headers = [
 		"TIME",
 		"Aircraft.state.pos_ned[0]",
@@ -38,7 +39,8 @@ def Log_Setup():
 def Log_Output(TIME, Aircraft):
 	# Log data from the current time step to output.csv
 
-	fo = open("post_processing/output.csv", "a")
+	Filepath = "post_processing/output.csv"	
+	fo = open(Filepath, "a")
 
 	data = [
 		TIME,
