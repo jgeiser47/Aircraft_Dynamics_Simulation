@@ -19,7 +19,7 @@ class Sim_Parameters():
 	END_TIME = 100
 	DELTA_T = 0.1 
 
-def Run_Sim(SIM, plane1):
+def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 	TIME = SIM.START_TIME
 	plane1.Calc_Forces()
 	plane1.state.acc_ENU = (np.linalg.inv(plane1.mass_matrix)).dot(plane1.forces.net_force)
@@ -44,7 +44,7 @@ def Run_Sim(SIM, plane1):
 		log_data.Log_Output(TIME, plane1)
 
 		# Display percentage completion to console
-		printProgressBar(TIME, SIM.END_TIME, prefix = 'Progress:', suffix = 'Complete', length = 50)
+		printProgressBar(TIME, SIM.END_TIME, CONSTANTS.TOLERANCE, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
 		# Increment time
 		TIME += SIM.DELTA_T
@@ -54,7 +54,7 @@ def Run_Sim(SIM, plane1):
 
 
 # Print iterations progress
-def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█'):
+def printProgressBar (iteration, total, tolerance, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█'):
 	"""
 	Call in a loop to create terminal progress bar
 	@params:
@@ -72,5 +72,5 @@ def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, 
 	print('\r%s |%s| %s%% %s' % (prefix, bar, percent, suffix), end = '\r')
 
 	# Print New Line on Complete
-	if iteration >= total - 0.000001: 
+	if iteration >= total - tolerance: 
 		print()
