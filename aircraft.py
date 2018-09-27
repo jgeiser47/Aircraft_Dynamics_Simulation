@@ -10,7 +10,7 @@ import numpy as np
 class Aircraft():
 	def __init__(self):
 
-		self.Design = "B747"
+		self.design = "B747"
 		self.state = state()
 		self.forces = forces()
 
@@ -24,7 +24,6 @@ class Aircraft():
 		self.forces.net_force = self.forces.net_force + self.Calc_Thrust() 
 		self.forces.net_force = self.forces.net_force + self.Calc_Weight() 
 
-
 	def Calc_Lift(self):
 		self.forces.lift_ned = np.array([0, 0, -1300])
 		return self.forces.lift_ned
@@ -32,8 +31,6 @@ class Aircraft():
 	def Calc_Drag(self):
 		drag_mag = 0.1 * np.linalg.norm(self.state.vel_ned) 
 		self.forces.drag_ned = -1 * drag_mag * self.state.vel_ned
-		
-		#print(self.forces.drag_ned)
 		return self.forces.drag_ned
 
 	def Calc_Thrust(self):
@@ -43,7 +40,6 @@ class Aircraft():
 	def Calc_Weight(self):
 		self.forces.weight_ned = np.array([0, 0, 1300])
 		return self.forces.weight_ned
-
 
 
 class state():
