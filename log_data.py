@@ -11,7 +11,7 @@ def Log_Setup():
 	Filepath = "post_processing/output.csv"	
 	if os.path.exists(Filepath):
 		os.remove(Filepath)
-		print("(Note: old post_processing/output.csv deleted)\n")
+		print("(Note: Old post_processing/output.csv file deleted)\n")
 
 	fo = open(Filepath, "w")
 	headers = [
