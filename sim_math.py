@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 ####################################################################################################
 # Description:		Run simulation by executing Driver.py script
 # Author(s):		Joshua Geiser
