@@ -16,11 +16,11 @@ class Aircraft():
 	mass_matrix = np.identity(3) * mass
 
 	def Calc_Forces(self):
-		self.forces.net_force = np.array([0, 0, 0])
-		self.forces.net_force = self.forces.net_force + self.Calc_Lift() 
-		self.forces.net_force = self.forces.net_force + self.Calc_Drag() 
-		self.forces.net_force = self.forces.net_force + self.Calc_Thrust() 
-		self.forces.net_force = self.forces.net_force + self.Calc_Weight() 
+		self.forces.net_force_ENU = np.array([0, 0, 0])
+		self.forces.net_force_ENU = self.forces.net_force_ENU + self.Calc_Lift() 
+		self.forces.net_force_ENU = self.forces.net_force_ENU + self.Calc_Drag() 
+		self.forces.net_force_ENU = self.forces.net_force_ENU + self.Calc_Thrust() 
+		self.forces.net_force_ENU = self.forces.net_force_ENU + self.Calc_Weight() 
 
 	def Calc_Lift(self):
 		self.forces.lift_ENU = np.array([0, 0, -1300])
@@ -55,4 +55,4 @@ class forces():
 		self.drag_ENU = np.array([0, 0, 0])
 		self.thrust_ENU = np.array([0, 0, 0])
 		self.weight_ENU = np.array([0, 0, 0])
-		self.net_force = np.array([0, 0, 0])
+		self.net_force_ENU = np.array([0, 0, 0])

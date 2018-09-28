@@ -23,9 +23,9 @@ def Log_Setup():
 		"Aircraft.state.acc_ENU[0]",
 		"Aircraft.state.acc_ENU[1]",
 		"Aircraft.state.acc_ENU[2]",
-		"Aircraft.forces.net_force[0]",
-		"Aircraft.forces.net_force[1]",
-		"Aircraft.forces.net_force[2]"
+		"Aircraft.forces.net_force_ENU[0]",
+		"Aircraft.forces.net_force_ENU[1]",
+		"Aircraft.forces.net_force_ENU[2]"
 	]
 
 	fo.write(",".join(headers) + "\n")
@@ -51,9 +51,9 @@ def Log_Output(TIME, Aircraft):
 		Aircraft.state.acc_ENU[0],
 		Aircraft.state.acc_ENU[1],
 		Aircraft.state.acc_ENU[2],
-		Aircraft.forces.net_force[0],
-		Aircraft.forces.net_force[1],
-		Aircraft.forces.net_force[2]
+		Aircraft.forces.net_force_ENU[0],
+		Aircraft.forces.net_force_ENU[1],
+		Aircraft.forces.net_force_ENU[2]
 	]
 
 	data = ",".join(map(str, data))
