@@ -19,25 +19,32 @@ class Sim_Parameters():
 
 def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 	TIME = SIM.START_TIME
+
+	# Update forces on aircraft for current timestep
 	plane1.Calc_Forces()
+
+	# Given forces, update accelerations
 	plane1.state.acc_ENU = (np.linalg.inv(plane1.design.mass_matrix)).dot(plane1.forces.net_force_ENU)
 
+	# Setup output logging and log output for start time
 	log_data.Log_Setup()
 	log_data.Log_Output(TIME, plane1)
+
+	# Iterate until simulation stop time
 	while (TIME <= SIM.END_TIME):
-
-		# Calculate forces on aircraft at current timestep
-		plane1.Calc_Forces()
-
-		# Given forces, update accelerations
-		plane1.state.acc_ENU = (np.linalg.inv(plane1.design.mass_matrix)).dot(plane1.forces.net_force_ENU)
 
 		# Given accelerations, update velocities
 		plane1.state.vel_ENU = sim_math.Integrate_Linear(SIM.DELTA_T, plane1.state.acc_ENU, plane1.state.vel_ENU)	
 
 		# Given veolocities, update positions
 		plane1.state.pos_ENU = sim_math.Integrate_Linear(SIM.DELTA_T, plane1.state.vel_ENU, plane1.state.pos_ENU)	
-	
+
+		# Update forces on aircraft for current timestep
+		plane1.Calc_Forces()
+
+		# Given forces, update accelerations
+		plane1.state.acc_ENU = (np.linalg.inv(plane1.design.mass_matrix)).dot(plane1.forces.net_force_ENU)
+
 		# Log output
 		log_data.Log_Output(TIME, plane1)
 
@@ -47,7 +54,7 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 		# Increment time
 		TIME += SIM.DELTA_T
 
-	print()
+	print("\n")
 	print("\033[92m" + "Simulation Complete - Data output to post_processing/output.csv" + "\033[0m")
 
 
