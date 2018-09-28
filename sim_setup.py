@@ -28,7 +28,7 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 
 	# Setup output logging and log output for start time
 	log_data.Log_Setup()
-	log_data.Log_Output(TIME, plane1)
+	data_total = log_data.Log_Output("", TIME, plane1)
 
 	# Iterate until simulation stop time
 	while (TIME <= SIM.END_TIME):
@@ -46,13 +46,15 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 		plane1.state.acc_ENU = (np.linalg.inv(plane1.design.mass_matrix)).dot(plane1.forces.net_force_ENU)
 
 		# Log output
-		log_data.Log_Output(TIME, plane1)
+		data_total = log_data.Log_Output(data_total, TIME, plane1)
 
 		# Display percentage completion to console
 		printProgressBar(TIME, SIM.END_TIME, CONSTANTS.TOLERANCE, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
 		# Increment time
 		TIME += SIM.DELTA_T
+
+	log_data.Log_Output_To_File(data_total)
 
 	print("\n")
 	print("\033[92m" + "Simulation Complete - Data output to post_processing/output.csv" + "\033[0m")

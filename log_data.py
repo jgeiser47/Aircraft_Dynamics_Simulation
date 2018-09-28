@@ -34,11 +34,8 @@ def Log_Setup():
 
 
 # Log data from the current time step to output.csv
-def Log_Output(TIME, Aircraft):
+def Log_Output(data_total, TIME, Aircraft):
 	# Log data from the current time step to output.csv
-
-	Filepath = "post_processing/output.csv"	
-	fo = open(Filepath, "a")
 
 	data = [
 		TIME,
@@ -57,8 +54,13 @@ def Log_Output(TIME, Aircraft):
 	]
 
 	data = ",".join(map(str, data))
+	data_total += data + "\n"
 
-	fo.write(data + "\n")
+	return data_total
+
+def Log_Output_To_File(data_total):
+	Filepath = "post_processing/output.csv"
+	fo = open(Filepath, "a")
+
+	fo.write(data_total)
 	fo.close()
-
-
