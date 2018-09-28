@@ -4,16 +4,14 @@
 # Last Modified:	10/2018
 
 import numpy as np
+from B737 import B737
 
 class Aircraft():
 	def __init__(self):
 
-		self.design = "B747"
+		self.design = B737()
 		self.state = state()
 		self.forces = forces()
-
-	mass = 1500;
-	mass_matrix = np.identity(3) * mass
 
 	def Calc_Forces(self):
 		self.forces.net_force_ENU = np.array([0, 0, 0])
