@@ -34,10 +34,10 @@ def Log_Setup():
 
 
 # Log data from the current time step to output.csv
-def Log_Output(data_total, TIME, Aircraft):
+def Log_Output(data, TIME, Aircraft):
 	# Log data from the current time step to output.csv
 
-	data = [
+	data_entry = [
 		TIME,
 		Aircraft.state.pos_ENU[0],
 		Aircraft.state.pos_ENU[1],
@@ -53,14 +53,18 @@ def Log_Output(data_total, TIME, Aircraft):
 		Aircraft.forces.net_force_ENU[2]
 	]
 
-	data = ",".join(map(str, data))
-	data_total += data + "\n"
+	data_entry = ",".join(map(str, data_entry))
+	data += data_entry + "\n"
 
-	return data_total
+	if len(data) >= 5000: 
+		Log_Output_To_File(data)
+		data = ""
 
-def Log_Output_To_File(data_total):
+	return data
+
+def Log_Output_To_File(data):
 	Filepath = "post_processing/output.csv"
 	fo = open(Filepath, "a")
 
-	fo.write(data_total)
+	fo.write(data)
 	fo.close()
