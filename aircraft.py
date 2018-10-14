@@ -21,7 +21,7 @@ class Aircraft():
 		self.forces.net_force_ENU = self.forces.net_force_ENU + self.Calc_Weight() 
 
 	def Calc_Lift(self):
-		self.forces.lift_ENU = np.array([0, 0, -1300])
+		self.forces.lift_ENU = np.array([0, 0, 1400])
 		return self.forces.lift_ENU
 
 	def Calc_Drag(self):
@@ -34,7 +34,7 @@ class Aircraft():
 		return self.forces.thrust_ENU
 
 	def Calc_Weight(self):
-		self.forces.weight_ENU = np.array([0, 0, 1300])
+		self.forces.weight_ENU = np.array([0, 0, -1300])
 		return self.forces.weight_ENU
 
 

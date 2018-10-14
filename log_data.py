@@ -25,7 +25,8 @@ def Log_Setup():
 		"Aircraft.state.acc_ENU[2]",
 		"Aircraft.forces.net_force_ENU[0]",
 		"Aircraft.forces.net_force_ENU[1]",
-		"Aircraft.forces.net_force_ENU[2]"
+		"Aircraft.forces.net_force_ENU[2]",
+		"Atmosphere.rho"
 	]
 
 	fo.write(",".join(headers) + "\n")
@@ -34,7 +35,7 @@ def Log_Setup():
 
 
 # Log data from the current time step to output.csv
-def Log_Output(data, TIME, Aircraft):
+def Log_Output(data, TIME, Atmosphere, Aircraft):
 	# Log data from the current time step to output.csv
 
 	data_entry = [
@@ -50,7 +51,8 @@ def Log_Output(data, TIME, Aircraft):
 		Aircraft.state.acc_ENU[2],
 		Aircraft.forces.net_force_ENU[0],
 		Aircraft.forces.net_force_ENU[1],
-		Aircraft.forces.net_force_ENU[2]
+		Aircraft.forces.net_force_ENU[2],
+		Atmosphere.rho
 	]
 
 	data_entry = ",".join(map(str, data_entry))
