@@ -20,6 +20,9 @@ class Sim_Parameters():
 def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 	TIME = SIM.START_TIME
 
+	# Update atmosphere conditions
+	Atmosphere.Update_Atmo(plane1.state.pos_ENU[2])
+
 	# Update forces on aircraft for current timestep
 	plane1.Calc_Forces()
 
@@ -33,6 +36,9 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 	# Iterate until simulation stop time
 	while (TIME < SIM.END_TIME - CONSTANTS.TOLERANCE):
 
+		# Update atmosphere conditions
+		Atmosphere.Update_Atmo(plane1.state.pos_ENU[2])
+		
 		# Given accelerations, update velocities
 		plane1.state.vel_ENU = sim_math.Integrate_Linear(SIM.DELTA_T, plane1.state.acc_ENU, plane1.state.vel_ENU)	
 

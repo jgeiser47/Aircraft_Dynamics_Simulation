@@ -46,6 +46,7 @@ class state():
 		self.ang_pos_body = np.array([0, 0, 0])
 		self.ang_vel_body = np.array([0, 0, 0])
 		self.ang_acc_body = np.array([0, 0, 0])
+		self.AoA = 0
 
 class forces():
 	def __init__(self): 
