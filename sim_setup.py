@@ -24,7 +24,7 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 	Atmosphere.Update_Atmo(plane1.state.pos_ENU[2])
 
 	# Update forces on aircraft for current timestep
-	plane1.Calc_Forces()
+	plane1.Calc_Forces(CONSTANTS, Atmosphere)
 
 	# Given forces, update accelerations
 	plane1.state.acc_ENU = (np.linalg.inv(plane1.design.mass_matrix)).dot(plane1.forces.net_force_ENU)
@@ -46,7 +46,7 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 		plane1.state.pos_ENU = sim_math.Integrate_Linear(SIM.DELTA_T, plane1.state.vel_ENU, plane1.state.pos_ENU)	
 
 		# Update forces on aircraft for current timestep
-		plane1.Calc_Forces()
+		plane1.Calc_Forces(CONSTANTS, Atmosphere)
 
 		# Given forces, update accelerations
 		plane1.state.acc_ENU = (np.linalg.inv(plane1.design.mass_matrix)).dot(plane1.forces.net_force_ENU)
