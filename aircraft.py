@@ -1,5 +1,5 @@
 ####################################################################################################
-# Description:		Run simulation by executing Driver.py script
+# Description:		Aircraft class which represents a single aircraft in flight
 # Author(s):		Joshua Geiser
 # Last Modified:	10/2018
 

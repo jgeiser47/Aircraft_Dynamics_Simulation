@@ -1,5 +1,5 @@
 ####################################################################################################
-# Description:		Run simulation by executing Driver.py script
+# Description:		Design geometry for a Boeing 737 aircraft
 # Author(s):		Joshua Geiser
 # Last Modified:	10/2018
 

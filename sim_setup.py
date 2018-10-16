@@ -1,5 +1,5 @@
 ####################################################################################################
-# Description:		Run simulation by executing Driver.py script
+# Description:		Defines main architecture of simulation and commands to run at each timestep
 # Author(s):		Joshua Geiser
 # Last Modified:	10/2018
 

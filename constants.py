@@ -1,5 +1,5 @@
 ####################################################################################################
-# Description:		Run simulation by executing Driver.py script
+# Description:		Constant values used throughout simulation
 # Author(s):		Joshua Geiser
 # Last Modified:	10/2018
 

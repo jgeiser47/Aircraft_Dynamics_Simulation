@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 ####################################################################################################
-# Description:		Run simulation by executing Driver.py script
+# Description:		Executable input deck to vary inputs and run simulation
 # Author(s):		Joshua Geiser
 # Last Modified:	10/2018
 

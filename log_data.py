@@ -1,5 +1,5 @@
 ####################################################################################################
-# Description:		Run simulation by executing Driver.py script
+# Description:		Setup and control output CSV logging of simulation data
 # Author(s):		Joshua Geiser
 # Last Modified:	10/2018
 

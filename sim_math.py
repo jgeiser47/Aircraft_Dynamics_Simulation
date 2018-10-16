@@ -1,5 +1,5 @@
 ####################################################################################################
-# Description:		Run simulation by executing Driver.py script
+# Description:		Various math functions used throughout simulation
 # Author(s):		Joshua Geiser
 # Last Modified:	10/2018
 

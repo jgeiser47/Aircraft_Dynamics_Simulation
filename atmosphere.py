@@ -1,5 +1,5 @@
 ####################################################################################################
-# Description:		Run simulation by executing Driver.py script
+# Description:		Atmosphere class which represents atmosphere in which aircraft are flying
 # Author(s):		Joshua Geiser
 # Last Modified:	10/2018
 
