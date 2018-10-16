@@ -24,7 +24,8 @@ class Aircraft():
 
 	def Calc_Lift(self, Atmosphere):
 		self.aero.CL = M.LUT_Linear_Interpolate_1D('LUTs/B737_CL_AoA.csv', self.aero.AoA)
-		lift_mag = 0.5 * Atmosphere.rho * self.design.wingarea * (np.linalg.norm(self.state.vel_ENU) ** 2) * self.aero.CL
+		#lift_mag = 0.5 * Atmosphere.rho * self.design.wingarea * (np.linalg.norm(self.state.vel_ENU) ** 2) * self.aero.CL
+		lift_mag = 0.5 * Atmosphere.rho * self.design.wingarea * (self.state.vel_ENU[0] ** 2) * self.aero.CL
 		self.forces.lift_ENU = np.array([0, 0, lift_mag])
 		return self.forces.lift_ENU
 
@@ -36,7 +37,7 @@ class Aircraft():
 		return self.forces.drag_ENU
 
 	def Calc_Thrust(self):
-		thrust_mag = 242800
+		thrust_mag = 137000
 		self.forces.thrust_ENU = np.array([thrust_mag, 0, 0])
 		return self.forces.thrust_ENU
 
