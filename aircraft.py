@@ -25,25 +25,25 @@ class Aircraft():
 	def Calc_Lift(self, Atmosphere):
 		self.aero.CL = M.LUT_Linear_Interpolate_1D('LUTs/B737_CL_AoA.csv', self.aero.AoA)
 		#lift_mag = 0.5 * Atmosphere.rho * self.design.wingarea * (np.linalg.norm(self.state.vel_ENU) ** 2) * self.aero.CL
-		lift_mag = 0.5 * Atmosphere.rho * self.design.wingarea * (self.state.vel_ENU[0] ** 2) * self.aero.CL
-		self.forces.lift_ENU = np.array([0, 0, lift_mag])
+		self.forces.lift_mag = 0.5 * Atmosphere.rho * self.design.wingarea * (self.state.vel_ENU[0] ** 2) * self.aero.CL
+		self.forces.lift_ENU = np.array([0, 0, self.forces.lift_mag])
 		return self.forces.lift_ENU
 
 	def Calc_Drag(self, Atmosphere):
 		self.aero.CD = self.design.CDi + M.LUT_Linear_Interpolate_1D('LUTs/B737_CD_vs_CL.csv', self.aero.CL)
 		
-		drag_mag = 0.5 * Atmosphere.rho * self.design.wingarea * np.linalg.norm(self.state.vel_ENU) * self.aero.CD
-		self.forces.drag_ENU = -1 * drag_mag * self.state.vel_ENU
+		self.forces.drag_mag = 0.5 * Atmosphere.rho * self.design.wingarea * np.linalg.norm(self.state.vel_ENU) * self.aero.CD
+		self.forces.drag_ENU = -1 * self.forces.drag_mag * self.state.vel_ENU
 		return self.forces.drag_ENU
 
 	def Calc_Thrust(self):
-		thrust_mag = 137000
-		self.forces.thrust_ENU = np.array([thrust_mag, 0, 0])
+		self.forces.thrust_mag = 137000
+		self.forces.thrust_ENU = np.array([self.forces.thrust_mag, 0, 0])
 		return self.forces.thrust_ENU
 
 	def Calc_Weight(self, CONSTANTS):
-		weight_mag = self.design.mass * CONSTANTS.GRAVITY
-		self.forces.weight_ENU = np.array([0, 0, -1*weight_mag])
+		self.forces.weight_mag = self.design.mass * CONSTANTS.GRAVITY
+		self.forces.weight_ENU = np.array([0, 0, -1*self.forces.weight_mag])
 		return self.forces.weight_ENU
 
 
@@ -56,6 +56,10 @@ class state():
 		self.ang_vel_body = np.array([0, 0, 0])
 		self.ang_acc_body = np.array([0, 0, 0])
 
+		self.pos_mag = 0
+		self.vel_mag = 0
+		self.acc_mag = 0
+
 class forces():
 	def __init__(self): 
 		self.lift_ENU = np.array([0, 0, 0])
@@ -63,6 +67,12 @@ class forces():
 		self.thrust_ENU = np.array([0, 0, 0])
 		self.weight_ENU = np.array([0, 0, 0])
 		self.net_force_ENU = np.array([0, 0, 0])
+
+		self.lift_mag = 0
+		self.drag_mag = 0
+		self.thrust_mag = 0
+		self.weight_mag = 0
+		self.net_force_mag = 0
 
 class aero():
 	def __init__(self):

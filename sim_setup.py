@@ -28,6 +28,7 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 
 	# Given forces, update accelerations
 	plane1.state.acc_ENU = (np.linalg.inv(plane1.design.mass_matrix)).dot(plane1.forces.net_force_ENU)
+	plane1.state.acc_mag = np.linalg.norm(plane1.state.acc_ENU)
 
 	# Setup output logging and log output for start time
 	log_data.Log_Setup()
@@ -41,15 +42,18 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 		
 		# Given accelerations, update velocities
 		plane1.state.vel_ENU = sim_math.Integrate_Linear(SIM.DELTA_T, plane1.state.acc_ENU, plane1.state.vel_ENU)	
+		plane1.state.vel_mag = np.linalg.norm(plane1.state.vel_ENU)
 
 		# Given veolocities, update positions
 		plane1.state.pos_ENU = sim_math.Integrate_Linear(SIM.DELTA_T, plane1.state.vel_ENU, plane1.state.pos_ENU)	
+		plane1.state.pos_mag = np.linalg.norm(plane1.state.pos_ENU)
 
 		# Update forces on aircraft for current timestep
 		plane1.Calc_Forces(CONSTANTS, Atmosphere)
 
 		# Given forces, update accelerations
 		plane1.state.acc_ENU = (np.linalg.inv(plane1.design.mass_matrix)).dot(plane1.forces.net_force_ENU)
+		plane1.state.acc_mag = np.linalg.norm(plane1.state.acc_ENU)
 
 		# Increment time
 		TIME += SIM.DELTA_T

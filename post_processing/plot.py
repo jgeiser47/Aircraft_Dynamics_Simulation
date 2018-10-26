@@ -22,4 +22,12 @@ plt.xlabel('Time (s)')
 plt.ylabel('Distance east (m)')
 plt.title('Position component vs time')
 
+plt.figure()
+plt.plot(data["TIME"], -1*data["Aircraft.forces.drag_ENU[0]"])
+plt.plot(data["TIME"], data["Aircraft.forces.thrust_ENU[0]"])
+plt.xlabel('Time (s)')
+plt.ylabel('Force (N)')
+plt.title('Thrust and Drag vs time')
+plt.legend()
+
 plt.show()
