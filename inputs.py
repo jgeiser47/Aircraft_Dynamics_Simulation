@@ -18,7 +18,7 @@ import sim_setup
 SIM = sim_setup.Sim_Parameters()
 
 SIM.START_TIME = 0.0
-SIM.END_TIME = 10000.0
+SIM.END_TIME = 1000.0
 SIM.DELTA_T = 2
 
 CONSTANTS = Constants()
