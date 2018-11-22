@@ -34,7 +34,7 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 	log_data.Log_Setup()
 	data = log_data.Log_Output("", TIME, Atmosphere, plane1)
 
-	# Iterate until simulation stop time
+	# Iterate until simulation stop time or aircraft crashes into ground
 	while (TIME < SIM.END_TIME - CONSTANTS.TOLERANCE and plane1.state.pos_ENU[2] >= 0):
 
 		# Update atmosphere conditions
@@ -67,7 +67,10 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 	log_data.Log_Output_To_File(data)
 
 	print("\n")
-	print("\033[92m" + "Simulation Complete - Data output to post_processing/output.csv" + "\033[0m")
+	if (plane1.state.pos_ENU[2] <= 0):
+		print("\033[91m" + "Simulation stopped due to aircraft altitude reaching 0 - Data output to post_processing/output.csv" + "\033[0m")	
+	else:
+		print("\033[92m" + "Simulation Complete - Data output to post_processing/output.csv" + "\033[0m")
 
 
 # Print iterations progress
