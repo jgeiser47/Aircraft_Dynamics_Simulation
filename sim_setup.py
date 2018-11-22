@@ -35,7 +35,7 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 	data = log_data.Log_Output("", TIME, Atmosphere, plane1)
 
 	# Iterate until simulation stop time
-	while (TIME < SIM.END_TIME - CONSTANTS.TOLERANCE):
+	while (TIME < SIM.END_TIME - CONSTANTS.TOLERANCE and plane1.state.pos_ENU[2] >= 0):
 
 		# Update atmosphere conditions
 		Atmosphere.Update_Atmo(plane1.state.pos_ENU[2])
@@ -63,7 +63,6 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 
 		# Display percentage completion to console
 		printProgressBar(TIME, SIM.END_TIME, CONSTANTS.TOLERANCE, prefix = 'Progress:', suffix = 'Complete', length = 50)
-
 
 	log_data.Log_Output_To_File(data)
 

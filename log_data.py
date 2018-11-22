@@ -46,6 +46,7 @@ def Log_Setup():
 		"Aircraft.forces.net_force_ENU[1]",
 		"Aircraft.forces.net_force_ENU[2]",
 		"Aircraft.forces.net_force_mag",
+		"Aircraft.aero.CD",
 		"Atmosphere.rho"
 	]
 
@@ -92,6 +93,7 @@ def Log_Output(data, TIME, Atmosphere, Aircraft):
 		Aircraft.forces.net_force_ENU[1]				,
 		Aircraft.forces.net_force_ENU[2]				,
 		Aircraft.forces.net_force_mag					,
+		Aircraft.aero.CD						,
 		Atmosphere.rho							
 	]
 

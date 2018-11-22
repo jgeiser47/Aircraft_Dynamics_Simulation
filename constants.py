@@ -10,4 +10,4 @@ class Constants():
 	GRAVITY = 9.81;
 	GRAVITY_ENU = np.array([0, 0, GRAVITY])
 	TOLERANCE = 1e-05;
-
+	RHO_0 = 1.225;
