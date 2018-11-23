@@ -32,9 +32,9 @@ class Aircraft():
 	def Calc_Drag(self, Atmosphere):
 		self.aero.CD = self.design.CDi + M.LUT_Linear_Interpolate_1D('LUTs/B737_CD_vs_CL.csv', self.aero.CL)
 		
-		drag_0 = 0.5 * Atmosphere.rho * self.design.wingarea * self.state.vel_ENU[0] * self.state.vel_ENU[0] * self.aero.CD
-		drag_1 = 0.5 * Atmosphere.rho * self.design.wingarea * self.state.vel_ENU[1] ** 2 * self.aero.CD
-		drag_2 = 0.5 * Atmosphere.rho * self.design.wingarea * self.state.vel_ENU[2] ** 2 * self.aero.CD
+		drag_0 = 0.5 * Atmosphere.rho * self.design.wingarea * self.state.vel_ENU[0] * abs(self.state.vel_ENU[0]) * self.aero.CD
+		drag_1 = 0.5 * Atmosphere.rho * self.design.wingarea * self.state.vel_ENU[1] * abs(self.state.vel_ENU[1]) * self.aero.CD
+		drag_2 = 0.5 * Atmosphere.rho * self.design.wingarea * self.state.vel_ENU[2] * abs(self.state.vel_ENU[2]) * self.aero.CD * 200
 	
 		self.forces.drag_mag = (drag_0 ** 2 + drag_1 ** 2 + drag_2 ** 2) ** 0.5
 		self.forces.drag_ENU = np.array([-1 * drag_0, -1 * drag_1, -1 * drag_2])
@@ -42,7 +42,7 @@ class Aircraft():
 		return self.forces.drag_ENU
 
 	def Calc_Thrust(self, CONSTANTS, Atmosphere):
-		self.forces.thrust_mag = 150000 #* Atmosphere.rho / CONSTANTS.RHO_0 #138000
+		self.forces.thrust_mag = 1700 * self.state.vel_mag * Atmosphere.rho / CONSTANTS.RHO_0 #138000
 		self.forces.thrust_ENU = np.array([self.forces.thrust_mag, 0, 0])
 		return self.forces.thrust_ENU
 
