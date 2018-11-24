@@ -4,13 +4,13 @@
 # Last Modified:	10/2018
 
 import numpy as np
-from B737 import B737
+from Planes.B737 import B737
 import sim_math as M
 
 class Aircraft():
 	def __init__(self):
 
-		self.design = B737()
+		self.design = B737() # Default plane if none is input
 		self.state = state()
 		self.forces = forces()
 		self.aero = aero()

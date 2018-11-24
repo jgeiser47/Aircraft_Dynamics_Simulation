@@ -10,7 +10,7 @@ import numpy as np
 from aircraft import Aircraft
 from atmosphere import Atmosphere
 from constants import Constants
-from B737 import B737
+from Planes.B737 import B737
 import sim_setup
 
 
