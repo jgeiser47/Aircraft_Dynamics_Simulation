@@ -63,6 +63,7 @@ class state():
 		self.pos_mag = 0
 		self.vel_mag = 0
 		self.acc_mag = 0
+		self.Mach = 0
 
 class forces():
 	def __init__(self): 

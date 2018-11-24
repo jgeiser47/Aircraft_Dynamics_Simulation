@@ -9,6 +9,8 @@ import sim_math as M
 class Atmosphere():
 
 	rho = 1.225 # kg/m^3
+	speed_of_sound = 340.294 # m/s
 
 	def Update_Atmo(self, height):
 		self.rho = M.LUT_Linear_Interpolate_1D('LUTs/Atmosphere_Density.csv', height)
+		self.speed_of_sound = M.LUT_Linear_Interpolate_1D('LUTs/Atmosphere_SpeedOfSound.csv', height)

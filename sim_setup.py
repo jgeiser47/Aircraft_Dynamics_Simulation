@@ -43,6 +43,7 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 		# Given accelerations, update velocities
 		plane1.state.vel_ENU = sim_math.Integrate_Linear(SIM.DELTA_T, plane1.state.acc_ENU, plane1.state.vel_ENU)	
 		plane1.state.vel_mag = np.linalg.norm(plane1.state.vel_ENU)
+		plane1.state.Mach = plane1.state.vel_mag / Atmosphere.speed_of_sound 
 
 		# Given veolocities, update positions
 		plane1.state.pos_ENU = sim_math.Integrate_Linear(SIM.DELTA_T, plane1.state.vel_ENU, plane1.state.pos_ENU)	

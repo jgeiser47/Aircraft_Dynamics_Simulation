@@ -11,6 +11,12 @@ from matplotlib import pyplot as plt
 
 data = pd.read_csv("output.csv", sep=',')
 
+plt.plot(data["TIME"], data["Aircraft.state.Mach"])
+plt.xlabel('Time (s)')
+plt.ylabel('Mach Number')
+plt.title('Mach Number vs time')
+
+plt.figure()
 plt.plot(data["TIME"], data["Aircraft.state.vel_ENU[0]"])
 plt.xlabel('Time (s)')
 plt.ylabel('Eastward Velocity (m/s)')
