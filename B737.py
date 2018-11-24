@@ -7,6 +7,8 @@ import numpy as np
 
 class B737():
 
+	name = "B737"
+
 	mass = 35000 # kg
 	mass_matrix = np.identity(3) * mass
 

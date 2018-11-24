@@ -23,13 +23,13 @@ class Aircraft():
 		self.forces.net_force_ENU = self.forces.net_force_ENU + self.Calc_Weight(CONSTANTS) 
 
 	def Calc_Lift(self, Atmosphere):
-		self.aero.CL = M.LUT_Linear_Interpolate_1D('LUTs/B737_CL_AoA.csv', self.aero.AoA)
+		self.aero.CL = M.LUT_Linear_Interpolate_1D('LUTs/' + self.design.name + '_CL_AoA.csv', self.aero.AoA)
 		self.forces.lift_mag = 0.5 * Atmosphere.rho * self.design.wingarea * (self.state.vel_ENU[0] ** 2) * self.aero.CL
 		self.forces.lift_ENU = np.array([0, 0, self.forces.lift_mag])
 		return self.forces.lift_ENU
 
 	def Calc_Drag(self, Atmosphere):
-		self.aero.CD = self.design.CDi + M.LUT_Linear_Interpolate_1D('LUTs/B737_CD_vs_CL.csv', self.aero.CL)
+		self.aero.CD = self.design.CDi + M.LUT_Linear_Interpolate_1D('LUTs/' + self.design.name + '_CD_vs_CL.csv', self.aero.CL)
 		
 		drag_0 = 0.5 * Atmosphere.rho * self.design.wingarea * self.state.vel_ENU[0] * abs(self.state.vel_ENU[0]) * self.aero.CD
 		drag_1 = 0.5 * Atmosphere.rho * self.design.wingarea * self.state.vel_ENU[1] * abs(self.state.vel_ENU[1]) * self.aero.CD
