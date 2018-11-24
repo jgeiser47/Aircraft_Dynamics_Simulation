@@ -11,6 +11,7 @@ from aircraft import Aircraft
 from atmosphere import Atmosphere
 from constants import Constants
 from Planes.B737 import B737
+from Planes.C172 import C172
 import sim_setup
 
 
