@@ -26,7 +26,7 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 	plane1.state.direction = plane1.state.vel_ENU / np.linalg.norm(plane1.state.vel_ENU)
 
 	# Update atmosphere conditions
-	Atmosphere.Update_Atmo(plane1.state.pos_ENU[2])
+	Atmosphere.Update_Atmo(plane1.state.pos_ENU[2], TIME)
 
 	# Update forces on aircraft for current timestep
 	plane1.Calc_Forces(CONSTANTS, Atmosphere)
@@ -43,7 +43,7 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 	while (TIME < SIM.END_TIME - CONSTANTS.TOLERANCE and plane1.state.pos_ENU[2] >= 0):
 
 		# Update atmosphere conditions
-		Atmosphere.Update_Atmo(plane1.state.pos_ENU[2])
+		Atmosphere.Update_Atmo(plane1.state.pos_ENU[2], TIME)
 		
 		# Given accelerations, update velocities
 		plane1.state.vel_ENU = sim_math.Integrate_Linear(SIM.DELTA_T, plane1.state.acc_ENU, plane1.state.vel_ENU)	

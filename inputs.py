@@ -8,7 +8,7 @@
 import numpy as np
 
 from aircraft import Aircraft
-from atmosphere import Atmosphere
+from atmosphere import Atmosphere, Wind
 from constants import Constants
 import sim_setup
 
@@ -44,6 +44,18 @@ plane1.state.vel_ENU = np.array([260, 0, 0])
 
 # Input angle of attack (in radians)
 plane1.aero.AoA = 0.02
+
+Wind_Gust_1 = Wind()
+Wind_Gust_1.start_time = 10
+Wind_Gust_1.end_time = 200
+Wind_Gust_1.wind_force = np.array([0, 1000, 0])
+Atmosphere.add_wind(Wind_Gust_1)
+
+Wind_Gust_2 = Wind()
+Wind_Gust_2.start_time = 150
+Wind_Gust_2.end_time = 1000
+Wind_Gust_2.wind_force = np.array([750, 4000, 0])
+Atmosphere.add_wind(Wind_Gust_2)
 	
 ####################################################################################################
 # END INPUT FIELDS

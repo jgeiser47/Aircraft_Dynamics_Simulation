@@ -17,6 +17,12 @@ plt.ylabel('Mach Number')
 plt.title('Mach Number vs time')
 
 plt.figure()
+plt.plot(data["TIME"], data["Aircraft.state.vel_ENU[1]"])
+plt.xlabel('Time (s)')
+plt.ylabel('Northward Velocity (m/s)')
+plt.title('Northward Velocity vs time')
+
+plt.figure()
 plt.plot(data["TIME"], data["Aircraft.state.vel_ENU[0]"])
 plt.xlabel('Time (s)')
 plt.ylabel('Eastward Velocity (m/s)')

@@ -23,6 +23,7 @@ class Aircraft():
 		self.forces.net_force_ENU = self.forces.net_force_ENU + self.Calc_Drag(Atmosphere) 
 		self.forces.net_force_ENU = self.forces.net_force_ENU + self.Calc_Thrust(CONSTANTS, Atmosphere) 
 		self.forces.net_force_ENU = self.forces.net_force_ENU + self.Calc_Weight(CONSTANTS) 
+		self.forces.net_force_ENU = self.forces.net_force_ENU + self.Calc_Wind(Atmosphere)
 
 	# Calculates lift force on aircraft at a given timestep
 	def Calc_Lift(self, Atmosphere):
@@ -68,6 +69,17 @@ class Aircraft():
 		self.forces.weight_ENU = np.array([0, 0, -1*self.forces.weight_mag])
 		return self.forces.weight_ENU
 
+	# Calculates wind force on aircraft at a given timestep based on input wind gusts
+	def Calc_Wind(self, Atmosphere):
+		self.forces.wind_ENU = np.array([0, 0, 0])
+
+		for wind_gust in Atmosphere.wind:
+			if (wind_gust.active):
+				self.forces.wind_ENU = self.forces.wind_ENU + wind_gust.wind_force
+
+		self.forces.wind_mag = (np.linalg.norm(self.forces.wind_ENU))
+		return self.forces.wind_ENU
+
 
 # State subclass of aircraft class - contains information about the current state of the aircraft
 class state():
@@ -92,12 +104,14 @@ class forces():
 		self.drag_ENU = np.array([0, 0, 0])
 		self.thrust_ENU = np.array([0, 0, 0])
 		self.weight_ENU = np.array([0, 0, 0])
+		self.wind_ENU = np.array([0, 0, 0])
 		self.net_force_ENU = np.array([0, 0, 0])
 
 		self.lift_mag = 0
 		self.drag_mag = 0
 		self.thrust_mag = 0
 		self.weight_mag = 0
+		self.wind_mag = 0
 		self.net_force_mag = 0
 
 # Aero subclass of aircraft class - contains information about aerodynamic properties of the aircraft
