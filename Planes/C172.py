@@ -16,4 +16,6 @@ class C172():
 	wingspan = 11.00 # m
 	chord = 1.454545 # m
 
+	max_thrust = 3000 # N
+
 	CDi = 0.027 # CD due to induced drag
