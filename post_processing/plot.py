@@ -47,7 +47,7 @@ plt.plot(data["TIME"], data["Aircraft.forces.lift_mag"])
 plt.plot(data["TIME"], data["Aircraft.forces.weight_mag"])
 plt.xlabel('Time (s)')
 plt.ylabel('Force (N)')
-plt.title('Lift vs Weight vs time')
+plt.title('Lift and Weight vs time')
 plt.legend()
 
 
