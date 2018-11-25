@@ -73,6 +73,7 @@ class Aircraft():
 	def Calc_Wind(self, Atmosphere):
 		self.forces.wind_ENU = np.array([0, 0, 0])
 
+		# Sum wind forces that are active at the current timestep
 		for wind_gust in Atmosphere.wind:
 			if (wind_gust.active):
 				self.forces.wind_ENU = self.forces.wind_ENU + wind_gust.wind_force

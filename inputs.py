@@ -45,6 +45,7 @@ plane1.state.vel_ENU = np.array([260, 0, 0])
 # Input angle of attack (in radians)
 plane1.aero.AoA = 0.02
 
+# Input wind gusts into atmosphere model to perturb aircraft
 Wind_Gust_1 = Wind()
 Wind_Gust_1.start_time = 10
 Wind_Gust_1.end_time = 200
