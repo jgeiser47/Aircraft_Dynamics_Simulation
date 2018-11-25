@@ -24,7 +24,8 @@ class Aircraft():
 
 	def Calc_Lift(self, Atmosphere):
 		self.aero.CL = M.LUT_Linear_Interpolate_1D('LUTs/' + self.design.name + '_CL_vs_AoA.csv', self.aero.AoA)
-		self.forces.lift_mag = 0.5 * Atmosphere.rho * self.design.wingarea * (self.state.vel_ENU[0] ** 2) * self.aero.CL
+		planar_velocity = (self.state.vel_ENU[0] ** 2 + self.state.vel_ENU[1] ** 2) ** 0.5
+		self.forces.lift_mag = 0.5 * Atmosphere.rho * self.design.wingarea * (planar_velocity ** 2) * self.aero.CL
 		self.forces.lift_ENU = np.array([0, 0, self.forces.lift_mag])
 		return self.forces.lift_ENU
 
@@ -42,7 +43,12 @@ class Aircraft():
 
 	def Calc_Thrust(self, CONSTANTS, Atmosphere):
 		self.forces.thrust_mag = self.design.max_thrust * Atmosphere.rho / CONSTANTS.RHO_0
-		self.forces.thrust_ENU = np.array([self.forces.thrust_mag, 0, 0])
+
+		thrust_0 = self.forces.thrust_mag * self.state.direction[0]
+		thrust_1 = self.forces.thrust_mag * self.state.direction[1]
+		thrust_2 = self.forces.thrust_mag * self.state.direction[2]
+
+		self.forces.thrust_ENU = np.array([thrust_0, thrust_1, thrust_2])
 		return self.forces.thrust_ENU
 
 	def Calc_Weight(self, CONSTANTS):
@@ -59,6 +65,7 @@ class state():
 		self.ang_pos_body = np.array([0, 0, 0])
 		self.ang_vel_body = np.array([0, 0, 0])
 		self.ang_acc_body = np.array([0, 0, 0])
+		self.direction = np.array([0, 0, 0])
 
 		self.pos_mag = 0
 		self.vel_mag = 0

@@ -20,6 +20,9 @@ class Sim_Parameters():
 def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 	TIME = SIM.START_TIME
 
+	# Determine direction of aircraft based on input initial velocity vector
+	plane1.state.direction = plane1.state.vel_ENU / np.linalg.norm(plane1.state.vel_ENU)
+
 	# Update atmosphere conditions
 	Atmosphere.Update_Atmo(plane1.state.pos_ENU[2])
 
