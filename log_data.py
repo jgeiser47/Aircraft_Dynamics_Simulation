@@ -1,16 +1,20 @@
 ####################################################################################################
 # Description:		Setup and control output CSV logging of simulation data
 # Author(s):		Joshua Geiser
-# Last Modified:	10/2018
+# Last Modified:	12/2018
 
 import os
-	
+
+# Setup of CSV logging
 def Log_Setup():
+
+	# If an output.csv file already exists, delete it
 	Filepath = "post_processing/output.csv"	
 	if os.path.exists(Filepath):
 		os.remove(Filepath)
 		print("(Note: Old post_processing/output.csv file deleted)\n")
 
+	# Create a new output.csv file and add headers to the first row of the CSV
 	fo = open(Filepath, "w")
 	headers = [
 		"TIME",
@@ -56,10 +60,10 @@ def Log_Setup():
 
 
 
-# Log data from the current time step to output.csv
+# Log data to output CSV file
 def Log_Output(data, TIME, Atmosphere, Aircraft):
-	# Log data from the current time step to output.csv
 
+	# Collect data from current timestep
 	data_entry = [
 		TIME								,
 		Aircraft.state.pos_ENU[0]					,
@@ -99,15 +103,18 @@ def Log_Output(data, TIME, Atmosphere, Aircraft):
 		Atmosphere.rho							
 	]
 
+	# Add data from current timestep to data variable
 	data_entry = ",".join(map(str, data_entry))
 	data += data_entry + "\n"
 
+	# Open CSV and add date to file only if data string is sufficently large (improves runtime efficiency)
 	if len(data) >= 5000: 
 		Log_Output_To_File(data)
 		data = ""
 
 	return data
 
+# Actual logging of data to output CSV file
 def Log_Output_To_File(data):
 	Filepath = "post_processing/output.csv"
 	fo = open(Filepath, "a")

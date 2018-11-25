@@ -1,8 +1,7 @@
 ####################################################################################################
 # Description:		Defines main architecture of simulation and commands to run at each timestep
 # Author(s):		Joshua Geiser
-# Last Modified:	10/2018
-
+# Last Modified:	12/2018
 
 import numpy as np
 
@@ -10,14 +9,17 @@ from aircraft import Aircraft
 import sim_math
 import log_data
 
+# Default values for simulation start time, stop time, and step size
 class Sim_Parameters():
-	# Input simulation start time, stop time, step size
 
 	START_TIME = 0
 	END_TIME = 100
 	DELTA_T = 0.1 
 
+# Main function that defines overall flow of simulation run commands
 def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
+
+	# Begin at input start time
 	TIME = SIM.START_TIME
 
 	# Determine direction of aircraft based on input initial velocity vector
@@ -68,16 +70,18 @@ def Run_Sim(SIM, CONSTANTS, Atmosphere, plane1):
 		# Display percentage completion to console
 		printProgressBar(TIME, SIM.END_TIME, CONSTANTS.TOLERANCE, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
+	# Final logging of data to output CSV file
 	log_data.Log_Output_To_File(data)
-
 	print("\n")
+
+	# Print a success or failure message to terminal based on if the simulation successfully reached the end time
 	if (plane1.state.pos_ENU[2] <= 0):
 		print("\033[91m" + "Simulation stopped due to aircraft altitude reaching 0 - Data output to post_processing/output.csv" + "\033[0m")	
 	else:
 		print("\033[92m" + "Simulation Complete - Data output to post_processing/output.csv" + "\033[0m")
 
 
-# Print iterations progress
+# Print iterations progress to terminal
 def printProgressBar (iteration, total, tolerance, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█'):
 	"""
 	Call in a loop to create terminal progress bar

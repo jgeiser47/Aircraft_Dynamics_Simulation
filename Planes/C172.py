@@ -5,7 +5,7 @@
 # Cruise Altitude: 	3000 m
 #
 # Author(s):		Joshua Geiser
-# Last Modified:	10/2018
+# Last Modified:	12/2018
 
 import numpy as np
 
