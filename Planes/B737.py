@@ -19,3 +19,10 @@ class B737():
 	max_thrust = 242800 # N
 
 	CDi = 0.043 # CD due to induced drag
+
+
+	# Specs found online
+	# 
+	# Cruise velocity - 260 m/s
+	# Cruis Altitude - 9145 m
+	# Max Mach Number - 0.82
