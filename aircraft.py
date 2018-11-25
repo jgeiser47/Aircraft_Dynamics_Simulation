@@ -41,7 +41,6 @@ class Aircraft():
 		return self.forces.drag_ENU
 
 	def Calc_Thrust(self, CONSTANTS, Atmosphere):
-		#self.forces.thrust_mag = 1500 * self.state.vel_mag * Atmosphere.rho / CONSTANTS.RHO_0 #138000
 		self.forces.thrust_mag = self.design.max_thrust * Atmosphere.rho / CONSTANTS.RHO_0
 		self.forces.thrust_ENU = np.array([self.forces.thrust_mag, 0, 0])
 		return self.forces.thrust_ENU

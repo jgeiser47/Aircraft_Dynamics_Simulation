@@ -1,5 +1,9 @@
 ####################################################################################################
 # Description:		Design geometry for a Cessna 172 aircraft
+#
+# Cruise Velocity:	55 m/s
+# Cruise Altitude: 	3000 m
+#
 # Author(s):		Joshua Geiser
 # Last Modified:	10/2018
 
@@ -16,6 +20,6 @@ class C172():
 	wingspan = 11.00 # m
 	chord = 1.454545 # m
 
-	max_thrust = 3000 # N
+	max_thrust = 1500 # N
 
 	CDi = 0.027 # CD due to induced drag

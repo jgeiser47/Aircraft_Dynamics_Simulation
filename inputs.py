@@ -28,9 +28,9 @@ Atmosphere = Atmosphere()
 
 plane1 = Aircraft()
 
-plane1.design = B737()
-plane1.state.pos_ENU = np.array([0, 0, 10000])
-plane1.state.vel_ENU = np.array([263, 0, 0])
+plane1.design = C172()
+plane1.state.pos_ENU = np.array([0, 0, 5000])
+plane1.state.vel_ENU = np.array([55, 0, 0])
 plane1.aero.AoA = 0.03
 	
 

@@ -1,5 +1,9 @@
 ####################################################################################################
 # Description:		Design geometry for a Boeing 737 aircraft
+#	
+# Cruise Velocity:	260 m/s
+# Cruise Altitude: 	9145 m
+#
 # Author(s):		Joshua Geiser
 # Last Modified:	10/2018
 
@@ -20,9 +24,3 @@ class B737():
 
 	CDi = 0.043 # CD due to induced drag
 
-
-	# Specs found online
-	# 
-	# Cruise velocity - 260 m/s
-	# Cruis Altitude - 9145 m
-	# Max Mach Number - 0.82
