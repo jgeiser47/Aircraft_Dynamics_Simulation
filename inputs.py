@@ -10,10 +10,11 @@ import numpy as np
 from aircraft import Aircraft
 from atmosphere import Atmosphere
 from constants import Constants
-from Planes.B737 import B737
-from Planes.C172 import C172
 import sim_setup
 
+from Planes.B737 import B737
+from Planes.C172 import C172
+from Planes.T38 import T38
 
 
 SIM = sim_setup.Sim_Parameters()
@@ -28,10 +29,10 @@ Atmosphere = Atmosphere()
 
 plane1 = Aircraft()
 
-plane1.design = C172()
-plane1.state.pos_ENU = np.array([0, 0, 5000])
-plane1.state.vel_ENU = np.array([55, 0, 0])
-plane1.aero.AoA = 0.03
+plane1.design = T38()
+plane1.state.pos_ENU = np.array([0, 0, 16000])
+plane1.state.vel_ENU = np.array([360, 0, 0])
+plane1.aero.AoA = 0.1
 	
 
 sim_setup.Run_Sim(SIM, CONSTANTS, Atmosphere, plane1)
