@@ -9,7 +9,7 @@ class B737():
 
 	name = "B737"
 
-	mass = 35000 # kg
+	mass = 50000 # kg
 	mass_matrix = np.identity(3) * mass
 
 	wingarea = 124.6 # m^2

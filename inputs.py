@@ -31,7 +31,7 @@ plane1 = Aircraft()
 plane1.design = B737()
 plane1.state.pos_ENU = np.array([0, 0, 10000])
 plane1.state.vel_ENU = np.array([263, 0, 0])
-plane1.aero.AoA = 0
+plane1.aero.AoA = 0.03
 	
 
 sim_setup.Run_Sim(SIM, CONSTANTS, Atmosphere, plane1)
