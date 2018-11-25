@@ -16,4 +16,6 @@ class B737():
 	wingspan = 34.32 # m
 	chord = 3.630536 # m
 
+	max_thrust = 242800 # N
+
 	CDi = 0.043 # CD due to induced drag
