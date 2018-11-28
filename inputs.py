@@ -39,7 +39,7 @@ plane1.design = B737()
 # Input initial position vector (ex: [0, 0, 10000] to begin at 10000 m altitude)
 plane1.state.pos_ENU = np.array([0, 0, 10000])
 
-# Input initial velocity vector (ex: [260, 0, 0] for an initial velocity of 260 m/s eastward
+# Input initial velocity vector (ex: [260, 0, 0] for an initial velocity of 260 m/s eastward)
 plane1.state.vel_ENU = np.array([260, 0, 0])
 
 # Input angle of attack (in radians)
